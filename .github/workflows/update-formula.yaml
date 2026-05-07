@@ -7,9 +7,10 @@ on:
 # Payload:
 #   name: formula name (e.g. "murmur")
 #   version: semver (e.g. "0.1.0")
+#   tag: release tag for download URLs (e.g. "v0.1.0", "dev")
 #   homepage: project URL
 #   description: formula description
-#   repo: source repo for release URLs (e.g. "prassoai/murmuration")
+#   repo: repo hosting release assets (e.g. "prassoai/homebrew-tap")
 #   binary: name of the installed binary (e.g. "murmur")
 #   artifacts: [{"os": "darwin", "arch": "arm64", "sha256": "..."}, ...]
 
@@ -30,6 +31,7 @@ jobs:
           payload = json.loads(os.environ["PAYLOAD"])
           name = payload["name"]
           version = payload["version"]
+          tag = payload.get("tag", f"v{version}")
           homepage = payload.get("homepage", "")
           desc = payload.get("description", "")
           repo = payload["repo"]
@@ -62,7 +64,7 @@ jobs:
               for a in sorted(by_os[os_name], key=lambda x: x["arch"]):
                   arch = a["arch"]
                   sha = a["sha256"]
-                  url = f'https://github.com/{repo}/releases/download/v{version}/{binary}-{os_name}-{arch}'
+                  url = f'https://github.com/{repo}/releases/download/{tag}/{binary}-{os_name}-{arch}'
                   lines.append(f'    {arch_method[arch]} do')
                   lines.append(f'      url "{url}"')
                   lines.append(f'      sha256 "{sha}"')
