@@ -6,18 +6,18 @@ class Murmur < Formula
   on_macos do
     on_intel do
       url "https://github.com/prassoai/homebrew-tap/releases/download/v76.0/murmur-darwin-amd64"
-      sha256 "f8fcefbdb6e3f8899ffb411120bbb7a9f0c8eef4203066e01c1764e28b1a212e"
+      sha256 "5acaa7ea2b0ade80a9374069187528f0456c823aafe15b704a8afa4e060f8a83"
     end
     on_arm do
       url "https://github.com/prassoai/homebrew-tap/releases/download/v76.0/murmur-darwin-arm64"
-      sha256 "f75d4d934acd6ce015ac3c7d437d29dac92a9c5679fd81f0070266ad5b256ee4"
+      sha256 "92ea6e3fb46fe68945eb82fbc446bb0ec2eb67eb77f642987f3a898670ebbdfb"
     end
   end
 
   on_linux do
     on_intel do
       url "https://github.com/prassoai/homebrew-tap/releases/download/v76.0/murmur-linux-amd64"
-      sha256 "fa7fcc58c5092fcca4fd5fdf4edbf3359e910ca2fee4b2dc63e7da27fb5a6769"
+      sha256 "0d43dbe05b18fa7f868fea50682376ed041396173e0b7439a036f2df5c82f212"
     end
   end
 
