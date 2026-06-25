@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Generate formula
+      - name: Generate formula and Nix lock
         run: |
           python3 - <<'PYEOF'
           import json, os, sys
@@ -85,6 +85,41 @@ jobs:
           with open(formula_path, "w") as f:
               f.write("\n".join(lines))
           print(f"Wrote {formula_path}")
+
+          # Render the Nix flake lock from the SAME payload so
+          # `nix run github:prassoai/homebrew-tap#murmur` tracks each stable
+          # release in lockstep with the Homebrew formula. Only the stable
+          # "murmur" formula has a flake — the floating edge channel stays
+          # brew-only — so skip any other name.
+          if name == "murmur":
+              nix_system = {
+                  ("linux", "amd64"): "x86_64-linux",
+                  ("linux", "arm64"): "aarch64-linux",
+                  ("darwin", "amd64"): "x86_64-darwin",
+                  ("darwin", "arm64"): "aarch64-darwin",
+              }
+              platforms = {}
+              for a in artifacts:
+                  sysd = nix_system.get((a["os"], a["arch"]))
+                  if sysd is None:
+                      print(f'skipping unmapped platform {a["os"]}-{a["arch"]} for Nix lock')
+                      continue
+                  platforms[sysd] = {
+                      "asset": f'{binary}-{a["os"]}-{a["arch"]}',
+                      "sha256": a["sha256"],
+                  }
+              lock = {
+                  "binary": binary,
+                  "platforms": platforms,
+                  "repo": repo,
+                  "tag": tag,
+                  "version": version,
+              }
+              os.makedirs("nix", exist_ok=True)
+              with open("nix/release.lock.json", "w") as f:
+                  json.dump(lock, f, indent=2, sort_keys=True)
+                  f.write("\n")
+              print("Wrote nix/release.lock.json")
           PYEOF
         env:
           PAYLOAD: ${{ toJson(github.event.client_payload) }}
@@ -95,7 +130,9 @@ jobs:
           VERSION="${{ github.event.client_payload.version }}"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add Formula/
+          # nix/ only changes on a stable "murmur" dispatch; staging it on every
+          # run is harmless (no diff -> not committed).
+          git add Formula/ nix/
           git diff --cached --quiet && echo "No changes" && exit 0
           git commit -m "${NAME} ${VERSION}"
           git push
