@@ -1,27 +1,27 @@
 class MurmurEdge < Formula
   desc "CLI for the Murmur agent orchestration platform (edge channel)"
   homepage "https://github.com/prassoai/murmuration"
-  version "209.2+b4195e05"
+  version "209.2+c7ebb591"
 
   on_macos do
     on_intel do
       url "https://github.com/prassoai/homebrew-tap/releases/download/dev/murmur-edge-darwin-amd64"
-      sha256 "96fb20b9c983b89615319f1e8d57621c968ab7a22057a8cd6c55edf91ffa0bf9"
+      sha256 "9fbd7e16fa724871307c96c9f5f6526903590bc0f0b62b093a0b7755e18474df"
     end
     on_arm do
       url "https://github.com/prassoai/homebrew-tap/releases/download/dev/murmur-edge-darwin-arm64"
-      sha256 "3cc07cd393eb9407e8236ff7ca2505adcd3b028130efd649adc330f4ea4f39c6"
+      sha256 "979e9b25baf46ea1cabfab29519ae4eefd510b3227745a9dc6499f939d6d88c4"
     end
   end
 
   on_linux do
     on_intel do
       url "https://github.com/prassoai/homebrew-tap/releases/download/dev/murmur-edge-linux-amd64"
-      sha256 "401420ccc845c346f7e7737b8f14f8f5bed91e179483a90ba3a5749823739f1a"
+      sha256 "eb95bfeb602446a46ccb6013081b0c24424fe45cc7d946641a37adc03f9e1f26"
     end
     on_arm do
       url "https://github.com/prassoai/homebrew-tap/releases/download/dev/murmur-edge-linux-arm64"
-      sha256 "ea0ccea1af5247666d1f249cddf80fac19429c4680c273d4ac49616be45a6541"
+      sha256 "6ddd1be3e9f01eaf10801576abde8a4586e5a93c1f25dc913d6a91e242fbf575"
     end
   end
 
