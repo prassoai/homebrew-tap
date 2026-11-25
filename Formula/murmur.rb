@@ -1,27 +1,27 @@
 class Murmur < Formula
   desc "CLI for the Murmur agent orchestration platform"
   homepage "https://github.com/prassoai/murmuration"
-  version "324.1"
+  version "325.1"
 
   on_macos do
     on_intel do
-      url "https://github.com/prassoai/homebrew-tap/releases/download/v324.1/murmur-darwin-amd64"
-      sha256 "2bc7a733928da1229cbd50af5b15bae87fbbfb1b62d64745415fced4b0dfb007"
+      url "https://github.com/prassoai/homebrew-tap/releases/download/v325.1/murmur-darwin-amd64"
+      sha256 "0b50e5257d5316ca1df30b2cbaaac4365bef45b6c788eb5f0f4b842dd436eeed"
     end
     on_arm do
-      url "https://github.com/prassoai/homebrew-tap/releases/download/v324.1/murmur-darwin-arm64"
-      sha256 "af0789c8069b2c402b065efe0e4c43a1f17ab20e5a351ba829c187e26be31d0c"
+      url "https://github.com/prassoai/homebrew-tap/releases/download/v325.1/murmur-darwin-arm64"
+      sha256 "8dd95fa41f24e0bc45b401f0ffee10dd50ba4c1130a40c6b93dcf6e2ac60d60a"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/prassoai/homebrew-tap/releases/download/v324.1/murmur-linux-amd64"
-      sha256 "d4d32dd2ab5f88bece8115f390992036dd2bdb9869904c37fd66a0dbd6a9bd68"
+      url "https://github.com/prassoai/homebrew-tap/releases/download/v325.1/murmur-linux-amd64"
+      sha256 "6c2e9b59ea9dfd9806d7711f85ce8a8fdfaa04a32f28b195e43b200f1c08561e"
     end
     on_arm do
-      url "https://github.com/prassoai/homebrew-tap/releases/download/v324.1/murmur-linux-arm64"
-      sha256 "078f2f99443f574b19289777ba7aeaa6221e87a10f11b22993ef217706d61799"
+      url "https://github.com/prassoai/homebrew-tap/releases/download/v325.1/murmur-linux-arm64"
+      sha256 "081f1959d4cda6254eb1f65ec03b4a8b2b5ab13943f3ec27cb85a71e869c8c7f"
     end
   end
 
